@@ -1,0 +1,58 @@
+# Build Mondo-ready NCIT OWL + LinkML YAML / OWL dump; publish release assets.
+# Pipeline: EVS Thesaurus.OWL.zip → ROBOT mirror → component (rename, xref fix, strip) →
+# transform.py → validate → linkml-owl. See docs/plan.md.
+
+name: Build and release
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 1"
+  push:
+    branches: [main]
+    paths:
+      - "Makefile"
+      - "config/**"
+      - "sparql/**"
+      - "linkml/**"
+      - "scripts/**"
+      - "pyproject.toml"
+      - "uv.lock"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build (ROBOT + LinkML)
+        run: |
+          docker run --rm \
+            -e ROBOT_JAVA_ARGS=-Xmx24G \
+            -e JAVA_OPTS=-Xmx24G \
+            -e ROBOT_PLUGINS_DIRECTORY=/tools/robot-plugins \
+            -v "$PWD:/work" \
+            -w /work \
+            obolibrary/odkfull:v1.6 \
+            bash -lc "make dependencies && make all"
+
+      - name: Set release tag
+        id: version
+        run: echo "tag=v$(date +%Y%m%d)-${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+
+      - name: Create release and upload assets
+        if: success() && hashFiles('ncit.yaml') != ''
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
+          files: |
+            ncit.yaml
+            ncit.owl
+          generate_release_notes: true
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,155 @@
+{
+  "metrics": {
+    "abox_axiom_count": 0,
+    "abox_axiom_count_incl": 0,
+    "annotation_property_count": 9,
+    "annotation_property_count_incl": 9,
+    "axiom_count": 646315,
+    "axiom_count_incl": 646315,
+    "class_count": 211072,
+    "class_count_incl": 211072,
+    "dataproperty_count": 0,
+    "dataproperty_count_incl": 0,
+    "datatypes_count": 24,
+    "datatypes_count_incl": 24,
+    "dt_builtin_count": 2,
+    "dt_builtin_count_incl": 2,
+    "dt_notbuiltin_count": 22,
+    "dt_notbuiltin_count_incl": 22,
+    "expressivity": "CCINT",
+    "expressivity_incl": "CCINT",
+    "individual_count": 0,
+    "individual_count_incl": 0,
+    "logical_axiom_count": 216322,
+    "logical_axiom_count_incl": 216322,
+    "obj_property_count": 0,
+    "obj_property_count_incl": 0,
+    "ontology_anno_count": 4,
+    "ontology_iri": "http://purl.obolibrary.org/obo/mondo/sources/ncit.owl",
+    "ontology_version_iri": "http://purl.obolibrary.org/obo/mondo/sources/2026-04-14/ncit.owl",
+    "owl2": true,
+    "owl2_dl": true,
+    "owl2_el": false,
+    "owl2_ql": false,
+    "owl2_rl": false,
+    "rbox_axiom_count": 0,
+    "rbox_axiom_count_incl": 0,
+    "rdfs": false,
+    "rule_count": 0,
+    "rule_count_incl": 0,
+    "signature_entity_count": 211105,
+    "signature_entity_count_incl": 211105,
+    "syntax": "RDF/XML Syntax",
+    "tbox_axiom_count": 216322,
+    "tbox_axiom_count_incl": 216322,
+    "tboxrbox_axiom_count": 216322,
+    "tboxrbox_axiom_count_incl": 216322,
+    "axiom_types": [
+      "AnnotationAssertion",
+      "EquivalentClasses",
+      "DatatypeDefinition",
+      "DisjointClasses",
+      "AnnotationPropertyRangeOf",
+      "Declaration",
+      "SubClassOf"
+    ],
+    "axiom_types_incl": [
+      "AnnotationAssertion",
+      "EquivalentClasses",
+      "DatatypeDefinition",
+      "DisjointClasses",
+      "AnnotationPropertyRangeOf",
+      "Declaration",
+      "SubClassOf"
+    ],
+    "constructs": [
+      "CONCEPT_COMPLEX_NEGATION",
+      "CONCEPT_INTERSECTION"
+    ],
+    "constructs_incl": [
+      "CONCEPT_COMPLEX_NEGATION",
+      "CONCEPT_INTERSECTION"
+    ],
+    "valid_imports": [],
+    "valid_imports_incl": [],
+    "axiom_type_count": {
+      "AnnotationAssertion": 218891,
+      "EquivalentClasses": 7538,
+      "DatatypeDefinition": 19,
+      "DisjointClasses": 171,
+      "AnnotationPropertyRangeOf": 3,
+      "Declaration": 211099,
+      "SubClassOf": 208594
+    },
+    "axiom_type_count_incl": {
+      "AnnotationAssertion": 218891,
+      "EquivalentClasses": 7538,
+      "DatatypeDefinition": 19,
+      "DisjointClasses": 171,
+      "AnnotationPropertyRangeOf": 3,
+      "Declaration": 211099,
+      "SubClassOf": 208594
+    },
+    "class_expression_count": {
+      "Class": 653358,
+      "ObjectIntersectionOf": 7538
+    },
+    "class_expression_count_incl": {
+      "Class": 653358,
+      "ObjectIntersectionOf": 7538
+    },
+    "curie_map": {
+      "dc11": "http://purl.org/dc/elements/1.1/",
+      "NCIT": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#",
+      "owl": "http://www.w3.org/2002/07/owl#",
+      "oboInOwl": "http://www.geneontology.org/formats/oboInOwl#",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "IAO": "http://purl.obolibrary.org/obo/IAO_",
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    "namespace_axiom_count": {
+      "dc11": 1,
+      "prefix_unknown": 1,
+      "NCIT": 653399,
+      "owl": 5564,
+      "oboInOwl": 2253,
+      "rdf": 19,
+      "IAO": 2,
+      "rdfs": 211078
+    },
+    "namespace_axiom_count_incl": {
+      "dc11": 1,
+      "prefix_unknown": 1,
+      "NCIT": 653399,
+      "owl": 5564,
+      "oboInOwl": 2253,
+      "rdf": 19,
+      "IAO": 2,
+      "rdfs": 211078
+    },
+    "namespace_entity_count": {
+      "dc11": 1,
+      "prefix_unknown": 1,
+      "NCIT": 211094,
+      "oboInOwl": 2,
+      "owl": 2,
+      "rdf": 1,
+      "IAO": 1,
+      "xsd": 1,
+      "rdfs": 2
+    },
+    "namespace_entity_count_incl": {
+      "dc11": 1,
+      "prefix_unknown": 1,
+      "NCIT": 211094,
+      "oboInOwl": 2,
+      "owl": 2,
+      "rdf": 1,
+      "IAO": 1,
+      "xsd": 1,
+      "rdfs": 2
+    },
+    "owl2dl_profile_violation": {}
+  }
+}

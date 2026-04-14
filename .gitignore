@@ -1,0 +1,9 @@
+tmp/
+env/.env
+*.pyc
+__pycache__/
+.venv/
+*.egg-info/
+dist/
+ncit.owl
+ncit.yaml
