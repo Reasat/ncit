@@ -12,7 +12,9 @@ If `linkml-validate` or loading YAML fails on synonym strings containing commas,
 
 ## ROBOT Java heap (large ontology)
 
-- First `robot` component build hit `OutOfMemoryError` with default heap. Run Docker with `-e ROBOT_JAVA_ARGS=-Xmx24G -e JAVA_OPTS=-Xmx24G` (see `odk.sh`).
+- First `robot` component build hit `OutOfMemoryError` with default heap. CI and `odk.sh` use `-e ROBOT_JAVA_ARGS=-Xmx4G -e JAVA_OPTS=-Xmx4G` (see note below).
+- **2026-04-17:** `-Xmx4G` in `odkfull:v1.6`: **Java heap OOM** during `robot query` building `tmp/transformed-ncit.owl`. For a green build on this ontology, raise heap (e.g. `-Xmx12G` on public `ubuntu-latest` 16 GB, or `-Xmx24G` on a large local machine).
+- We should investigate why the OOM happens for this specific repo
 
 ## linkml-owl vs release OWL
 
