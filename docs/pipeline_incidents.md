@@ -12,9 +12,8 @@ If `linkml-validate` or loading YAML fails on synonym strings containing commas,
 
 ## ROBOT Java heap (large ontology)
 
-- First `robot` component build hit `OutOfMemoryError` with default heap. CI and `odk.sh` use `-e ROBOT_JAVA_ARGS=-Xmx4G -e JAVA_OPTS=-Xmx4G` (see note below).
-- **2026-04-17:** `-Xmx4G` in `odkfull:v1.6`: **Java heap OOM** during `robot query` building `tmp/transformed-ncit.owl`. For a green build on this ontology, raise heap (e.g. `-Xmx12G` on public `ubuntu-latest` 16 GB, or `-Xmx24G` on a large local machine).
-- We should investigate why the OOM happens for this specific repo
+- First `robot` component build hit `OutOfMemoryError` with default heap. CI and `odk.sh` use `-e ROBOT_JAVA_ARGS=-Xmx12G -e JAVA_OPTS=-Xmx12G` so ROBOT can load NCIT for `robot query` on public GitHub-hosted `ubuntu-latest` (16 GB RAM); leave headroom for Docker/OS.
+- **2026-04-17:** `-Xmx4G` is **too small**: **Java heap OOM** during `robot query` building `tmp/transformed-ncit.owl` (local and CI). Not the same as Linux `Killed` (kernel OOM). Private repos use 8 GB runners — if the job is killed or JVM fails to start, lower `-Xmx` (e.g. 6G) or use a larger runner. Workstations with plenty of RAM can use `-Xmx24G` in `odk.sh`.
 
 ## linkml-owl vs release OWL
 
