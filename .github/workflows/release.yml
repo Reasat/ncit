@@ -1,5 +1,5 @@
 # Build Mondo-ready NCIT OWL + LinkML YAML / OWL dump; publish release assets.
-# Pipeline: EVS Thesaurus.OWL.zip → ROBOT mirror → component (rename, xref fix, strip) →
+# Pipeline: ncit-disorders.owl PURL (temporary) → ROBOT mirror → component →
 # transform.py → validate → linkml-owl. See docs/plan.md.
 
 name: Build and release
@@ -12,12 +12,15 @@ on:
     branches: [main]
     paths:
       - "Makefile"
+      - "project.Makefile"
       - "config/**"
       - "sparql/**"
       - "linkml/**"
       - "scripts/**"
       - "pyproject.toml"
       - "uv.lock"
+      - "docs/**"
+      - "env/**"
 
 jobs:
   build-and-release:

@@ -2,8 +2,9 @@
 """
 Serialize NCI Thesaurus (EVS asserted OWL) component → schema-conformant YAML.
 
-Reads ROBOT output (P97→IAO:0000115, P90→hasExactSynonym, xref fix). Class IRIs use the EVS
-namespace `http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C…` expressed as CURIEs `NCIT:C…`.
+Reads ROBOT output (P97→IAO:0000115, P90→hasExactSynonym, xref fix where applicable). Class IRIs may be:
+EVS `http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C…` or OBO edition
+`http://purl.obolibrary.org/obo/NCIT_C…` — both become CURIEs `NCIT:C…`.
 
 Input:  tmp/transformed-ncit.owl
 Output: ncit.yaml
@@ -22,7 +23,8 @@ from rdflib.namespace import DCTERMS, SKOS, Namespace
 OBOINOWL = Namespace("http://www.geneontology.org/formats/oboInOwl#")
 OBO = Namespace("http://purl.obolibrary.org/obo/")
 
-NCIT_IRI_PREFIX = "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#"
+NCIT_IRI_PREFIX_EVS = "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#"
+NCIT_IRI_PREFIX_OBO_CLASS = "http://purl.obolibrary.org/obo/NCIT_C"
 NCIT_CURIE_PREFIX = "NCIT:"
 
 DEFINITION = OBO["IAO_0000115"]
@@ -30,15 +32,20 @@ OWL_DEPRECATED_PROP = OWL.deprecated
 
 
 def is_ncit_class_iri(iri: str) -> bool:
-    if not iri.startswith(NCIT_IRI_PREFIX):
-        return False
-    frag = iri[len(NCIT_IRI_PREFIX) :]
-    return len(frag) > 0 and frag[0] == "C"
+    if iri.startswith(NCIT_IRI_PREFIX_EVS):
+        frag = iri[len(NCIT_IRI_PREFIX_EVS) :]
+        return len(frag) > 0 and frag[0] == "C"
+    if iri.startswith(NCIT_IRI_PREFIX_OBO_CLASS):
+        rest = iri[len(NCIT_IRI_PREFIX_OBO_CLASS) :]
+        return rest.isdigit()
+    return False
 
 
 def iri_to_curie(iri: str) -> str:
-    if iri.startswith(NCIT_IRI_PREFIX):
-        return NCIT_CURIE_PREFIX + iri[len(NCIT_IRI_PREFIX) :]
+    if iri.startswith(NCIT_IRI_PREFIX_EVS):
+        return NCIT_CURIE_PREFIX + iri[len(NCIT_IRI_PREFIX_EVS) :]
+    if iri.startswith(NCIT_IRI_PREFIX_OBO_CLASS):
+        return f"{NCIT_CURIE_PREFIX}C{iri[len(NCIT_IRI_PREFIX_OBO_CLASS):]}"
     return iri
 
 

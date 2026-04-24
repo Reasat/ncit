@@ -6,12 +6,15 @@ on:
   pull_request:
     paths:
       - "Makefile"
+      - "project.Makefile"
       - "config/**"
       - "sparql/**"
       - "linkml/**"
       - "scripts/**"
       - "pyproject.toml"
       - "uv.lock"
+      - "docs/**"
+      - "env/**"
 
 jobs:
   build:

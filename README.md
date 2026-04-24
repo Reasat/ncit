@@ -1,6 +1,8 @@
 # ncit
 
-NCI Thesaurus (EVS asserted OWL) as LinkML YAML and LinkML-derived OWL for Mondo ingest.
+NCIt as LinkML YAML and release OWL for Mondo ingest. **Current upstream:** OBO Foundry
+`ncit-disorders.owl` (disease/disorder branch) — smaller than the full EVS `Thesaurus.owl`
+ZIP; see `docs/plan.md` for restoring the full asserted build.
 
 ## Setup
 
@@ -10,11 +12,20 @@ Install dependencies (local validation / `verify` outside Docker):
 uv sync
 ```
 
+Optional: copy `env/.env.example` to `env/.env` and set `NCIT_MIRROR_URL` if overriding the
+default mirror.
+
 ## Run
 
 ```bash
 ./odk.sh make all
 ./odk.sh make MIR=false build
+```
+
+Fetch only (same as `make mirror`):
+
+```bash
+python scripts/acquire.py
 ```
 
 ## Outputs

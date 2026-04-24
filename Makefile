@@ -107,7 +107,7 @@ Core commands:
 * all:			Run the entire pipeline (build + reports).
 * build:		Run the entire release pipeline. Use make MIR=false build to avoid re-downloading.
 * verify:		Run structural checks on $(YAML_OUT) (also runs at end of build).
-* mirror:		Just obtain the raw source.
+* mirror:		Download raw source via scripts/acquire.py.
 * reports:		Create reports from built artifacts.
 * clean:		Delete all temporary files and reports.
 * help:			Print usage information.

@@ -1,5 +1,14 @@
 # Release notes (NCIT)
 
+## 2026-04-24 (disorders mirror + ingest alignment)
+
+- **Upstream (temporary):** `http://purl.obolibrary.org/obo/ncit/ncit-disorders.owl` (OBO edition disease/disorder branch).
+- **Terms (smoke build on disorders OWL, 2026-04-24):** 22,379 total (0 deprecated in that run); full `make all` in CI refreshes `ncit.yaml` / `ncit.owl` release assets.
+- **Acquire:** `scripts/acquire.py` implements mirror download (`make mirror` calls it); optional `NCIT_MIRROR_URL` / `NCIT_RAW_OWL`.
+- **Reports:** `sparql/count_classes_by_top_level.sparql` lists both EVS `#C…` and OBO `NCIT_C…` top-level IRIs so `make reports` works for either mirror (disorders extract may only populate some rows, e.g. C7057 absent).
+- **Dependencies:** `pyproject.toml` / `uv.lock` use `linkml-owl==0.5.0` to match `make dependencies` in ODK.
+- **linkml-validate / verify.py:** expected PASS after a full pipeline run on the disorders mirror.
+
 ## 2026-04-14 (scaffold verification)
 
 - **EVS / NCIt build:** `26.03e` (from `owl:versionInfo` in source ontology; mirrored in `ncit.yaml` `version`).

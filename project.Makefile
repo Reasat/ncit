@@ -1,14 +1,12 @@
-# NCIT — NCI Thesaurus asserted OWL from EVS (stable “current” ZIP).
+# NCIT — temporary mirror: OBO Foundry NCIT disorders branch extract (smaller than full EVS ZIP).
+# Reinstate EVS `Thesaurus.OWL.zip` when ready: see docs/plan.md.
 
-# Authoritative asserted release: unversioned alias always tracks the latest monthly build.
-THESAURUS_ZIP_URL ?= https://evs.nci.nih.gov/ftp1/NCI_Thesaurus/Thesaurus.OWL.zip
+NCIT_MIRROR_URL ?= http://purl.obolibrary.org/obo/ncit/ncit-disorders.owl
 
 ifeq ($(MIR),true)
 $(RAW_OWL): | $(TMP_DIR)
-	curl -fsSL -o $(TMP_DIR)/Thesaurus.OWL.zip $(THESAURUS_ZIP_URL)
-	unzip -o -q $(TMP_DIR)/Thesaurus.OWL.zip Thesaurus.owl -d $(TMP_DIR)
-	mv -f $(TMP_DIR)/Thesaurus.owl $@
-	@echo "Downloaded and extracted: $@"
+	python $(SCRIPTS_DIR)/acquire.py --url "$(NCIT_MIRROR_URL)" -o "$(RAW_OWL)"
+	@echo "Downloaded: $@"
 endif
 
 # ROBOT: normalize, rename NCIT editor predicates to OBO/oboInOwl, fix xref prefixes, strip

@@ -9,6 +9,8 @@ If `linkml-validate` or loading YAML fails on synonym strings containing commas,
 ## Initial scaffold
 
 - **2026-04-14:** Repository created with EVS stable `Thesaurus.OWL.zip` URL and ROBOT rename of `P90`/`P97` to standard oboInOwl / IAO predicates.
+- **2026-04-24:** Temporary mirror switched to OBO `http://purl.obolibrary.org/obo/ncit/ncit-disorders.owl`; `transform.py` accepts OBO `NCIT_C…` class IRIs as well as EVS `#C…` IRIs. Reinstate EVS ZIP in `project.Makefile` when the full asserted build is viable.
+- **2026-04-24 (mondo-source-ingest-update):** Added `scripts/acquire.py` + `env/.env.example`; `count_classes_by_top_level.sparql` includes OBO top-level IRIs so ROBOT report queries return counts on the disorders OWL (EVS-only VALUES matched nothing).
 
 ## ROBOT Java heap (large ontology)
 
